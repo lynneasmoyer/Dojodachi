@@ -1,0 +1,50 @@
+﻿@model Dojodachi
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Dojodachi!</h1>
+
+<div class="card mb-3" style="max-width: 740px; margin-left: 200px">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="~/images/Shibadachi.gif" class="card-img-top" alt="dojodachi image">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Fullness: @ViewBag.fullness</li>
+                    <li class="list-group-item">Happiness: @ViewBag.happiness</li>
+                    <li class="list-group-item">Meals: @ViewBag.meals</li>
+                    <li class="list-group-item">Energy: @ViewBag.energy</li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
+<div>
+    <h2>@ViewBag.message</h2>
+</div>
+<div>
+    @(if ViewBag.energy > 1 || ViewBag.happiness > 1)
+    {
+    <a href="/feed" class="btn btn-primary">Feed</a>
+    <a href="/play" class="btn btn-success">Play</a>
+    <a href="/work" class="btn btn-secondary">Work</a>
+    <a href="/sleep" class="btn btn-dark">Sleep</a>
+    }
+    
+    @if((int)ViewBag.energy < 1 || ViewBag.happiness < 1)
+    {
+        <p>Your Dojodachi has passed away.</p>
+        <a href="/" class="btn btn-danger">Retry</a>
+    }
+    @if(ViewBag.happiness >= 100 || ViewBag.energy >= 100 || ViewBag.fullness >= 100)
+    {
+        <p>Congrats! You won!</p>
+        <a href="/" class="btn btn-success">Replay?</a>
+    }
+</div>
+
